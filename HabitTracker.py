@@ -2,7 +2,7 @@ import json
 import tkinter as tk
 
 def main():
-    
+
     #List of user habits
     habits = []
 
@@ -43,16 +43,20 @@ def main():
         label = tk.Label(starting_frame, text="What habits would you like to track?")
         label.pack()
 
-        for habit in habits:
+        for i, habit in enumerate(habits):
             habit_frame = tk.Frame(starting_frame)
             habit_frame.pack()
             saved_habits = tk.Label(habit_frame, text=habit)
             saved_habits.pack(side='left')
+            check_var = tk.IntVar(value=0)
+            checkbox = tk.Checkbutton(habit_frame, variable=check_var)
+            checkbox.pack(side='right')
             delete_button = tk.Button(habit_frame, text='Delete', command=lambda habit=habit: delete_habit(habit))
             delete_button.pack(side='right')
 
         back_button = tk.Button(starting_frame, text="Back", command=starting_prompt)
         back_button.pack()
+
 
     #Shows the 'home' page
     def starting_prompt():
